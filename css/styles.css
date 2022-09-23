@@ -65,6 +65,8 @@ body {
   font-size: 26px;
   line-height: 1.2;
 
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   /* padding-top: 24px;
   padding-bottom: 25px; */
 }
@@ -110,6 +112,8 @@ body {
   line-height: 1.2;
   letter-spacing: 0.02em;
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .menu .link:hover,
 .menu .link:focus {
@@ -118,6 +122,18 @@ body {
 
 .menu .link.current {
   color: var(--link-color);
+  position: relative;
+}
+
+.menu .link.current::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 4px;
+  bottom: -1px;
+  left: 0;
+  background-color: var(--link-color);
+  border-radius: 2px;
 }
 
 /* контакты флекс */
@@ -144,20 +160,27 @@ body {
   letter-spacing: 0.02em;
   text-decoration: none;
   align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contacts .icon {
   margin-right: 10px;
   fill: currentColor;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* При ховері на фокусі є запізення в зміні кольору у svg */
 .contacts .link:hover,
-.contacts .link:focus,
-.contacts .icon:hover,
-.contacts .icon:focus {
+.contacts .link:focus {
   color: var(--link-color);
   fill: var(--link-color);
 }
 
+.contacts .icon:hover,
+.contacts .icon:focus {
+  fill: var(--link-color);
+}
 /* hero */
 
 .hero {
@@ -215,6 +238,9 @@ body {
   line-height: 1.9;
   letter-spacing: 0.06em;
   text-align: center;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
@@ -307,6 +333,7 @@ body {
 
 .features .item > .text {
   margin: 0;
+  line-height: 1.7;
 }
 
 .features .title,
@@ -355,6 +382,7 @@ body {
   width: 370px;
   margin-right: 30px;
   margin-bottom: 0;
+  position: relative;
 }
 
 .about .section-title {
@@ -365,9 +393,27 @@ body {
   margin-right: 0;
 }
 
+.about-desc {
+  position: absolute;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
+.about-desc > .description {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  margin: 0;
+  text-align: center;
+}
+
 /* team */
 .team {
-  background-color: #f5f4fa;
+  background-color: var(--team-color);
 }
 
 .section-title.team {
@@ -439,6 +485,8 @@ body {
   justify-content: center;
   border-radius: 50%;
   fill: var(--client-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .action > .link:hover,
@@ -479,12 +527,71 @@ body {
   border-radius: 4px;
   align-items: center;
   justify-content: center;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-link:hover,
 .client-link:focus {
   fill: var(--link-color);
   border: 1px solid var(--link-color);
+}
+
+/* modal */
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+
+  width: 528px;
+  height: 581px;
+
+  background-color: #ffffff;
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* footer */
@@ -598,6 +705,7 @@ padding-bottom: 60px;
 
 /* portfolio filters */
 .button-alt {
+  background-color: var();
   font-weight: 500;
   font-size: 16px;
   line-height: 1.6;
@@ -606,6 +714,10 @@ padding-bottom: 60px;
   border: none;
 
   padding: 6px 22px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-alt:hover,
@@ -658,7 +770,15 @@ padding-bottom: 60px;
 }
 
 .project {
+  display: block;
   text-decoration: none;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.item .project:hover,
+.item .project:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
 .portfolio .item {
@@ -676,12 +796,63 @@ padding-bottom: 60px;
   margin-right: 0;
 }
 
-.portfolio .item:hover {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
+/* тумабааа */
+
+.thumb {
+  position: relative;
+  overflow: hidden;
 }
+
+.thumb::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  opacity: 0;
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project:hover .thumb::before,
+.project:focus .thumb::before {
+  opacity: 1;
+  transform: translateY(0);
+  
+}
+
+.project-text {
+  position: absolute;
+  padding: 63px 24px;
+  
+  top: 0;
+  opacity: 0;
+  
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.project:hover .project-text,
+.project:focus .project-text  {
+  opacity: 1;
+  transform: translateY(0);
+
+}
+
+.text-desc {
+  font-weight: 400;
+font-size: 18px;
+line-height: 1.5;
+letter-spacing: 0.03em;
+color: var(--primary-white-color);
+}
+
+
 .item img {
   display: block;
+  
 }
 
 .info {
@@ -689,5 +860,4 @@ padding-bottom: 60px;
   border-bottom: 1px solid #eeeeee;
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
-  -webkit-column-rule-width: ;
 }
