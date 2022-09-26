@@ -166,8 +166,6 @@ body {
 .contacts .icon {
   margin-right: 10px;
   fill: currentColor;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* При ховері на фокусі є запізення в зміні кольору у svg */
@@ -486,7 +484,7 @@ body {
   border-radius: 50%;
   fill: var(--client-color);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .action > .link:hover,
@@ -553,6 +551,8 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   opacity: 1;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden .modal {
@@ -694,11 +694,13 @@ padding-bottom: 60px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   fill: var(--primary-white-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-links .link:hover,
 .footer-links .link:focus {
-  background: var(--link-color);
+  background-color: var(--link-color);
 }
 
 /* Portfolio */
@@ -803,56 +805,35 @@ padding-bottom: 60px;
   overflow: hidden;
 }
 
-.thumb::before {
-  content: "";
+.project-text {
   position: absolute;
+  padding: 63px 24px;
   width: 100%;
   height: 100%;
   background-color: rgba(33, 150, 243, 0.9);
   opacity: 0;
-
-  transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project:hover .thumb::before,
-.project:focus .thumb::before {
-  opacity: 1;
-  transform: translateY(0);
-  
-}
-
-.project-text {
-  position: absolute;
-  padding: 63px 24px;
-  
   top: 0;
-  opacity: 0;
-  
+
   transform: translateY(100%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
 }
 
 .project:hover .project-text,
-.project:focus .project-text  {
+.project:focus .project-text {
   opacity: 1;
   transform: translateY(0);
-
 }
 
 .text-desc {
   font-weight: 400;
-font-size: 18px;
-line-height: 1.5;
-letter-spacing: 0.03em;
-color: var(--primary-white-color);
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  color: var(--primary-white-color);
 }
-
 
 .item img {
   display: block;
-  
 }
 
 .info {
